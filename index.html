@@ -3,58 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Navigation Weather Quiz (BN104 & BN105)</title>
+    <title>AETC Basic Navigation Quiz (BN104, BN105, BN106)</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f9;
             color: #333;
             margin: 0;
             padding: 20px;
         }
-        #quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
+        .quiz-container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
-        h1, h2 {
+        h1 {
             text-align: center;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+            color: #00387b;
+            border-bottom: 2px solid #00387b;
             padding-bottom: 10px;
+            margin-bottom: 30px;
         }
         .question-block {
             margin-bottom: 25px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
         .question-text {
             font-weight: bold;
-            margin-bottom: 15px;
             font-size: 1.1em;
+            margin-bottom: 15px;
         }
-        .options-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .options-list li {
-            margin-bottom: 10px;
-        }
-        label {
-            cursor: pointer;
+        .options-container label {
             display: block;
+            margin-bottom: 10px;
             padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.2s ease;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-        label:hover {
-            background-color: #ecf0f1;
+        .options-container label:hover {
+            background-color: #e9ecef;
         }
         input[type="radio"] {
             margin-right: 10px;
@@ -66,636 +63,951 @@
             font-size: 1.2em;
             font-weight: bold;
             color: #fff;
-            background-color: #3498db;
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 30px;
-            transition: background-color 0.3s ease;
         }
         #submit-btn:hover {
-            background-color: #2980b9;
+            background-color: #0056b3;
         }
         #results {
-            margin-top: 30px;
-            padding: 20px;
             text-align: center;
             font-size: 1.5em;
             font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
             border-radius: 8px;
         }
         /* Feedback Styles */
         .correct {
-            background-color: #e8f5e9; /* Light green */
-            border-color: #4caf50; /* Green */
+            background-color: #d4edda;
+            border-color: #c3e6cb;
         }
         .incorrect {
-            background-color: #ffebee; /* Light red */
-            border-color: #f44336; /* Red */
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
         }
-        .unanswered {
-             background-color: #fff3e0; /* Light orange */
-             border-color: #ff9800; /* Orange */
-        }
-        .correct-answer-text {
-            color: #2e7d32;
+        .correct-answer {
             font-weight: bold;
-            margin-top: 10px;
+            color: #155724;
+            border: 2px solid #28a745;
         }
+        .user-incorrect-choice {
+            text-decoration: line-through;
+            color: #721c24;
+        }
+
     </style>
 </head>
 <body>
 
-    <div id="quiz-container">
-        <h1>Basic Navigation Weather Quiz</h1>
-        <h2>BN104 & BN105</h2>
-        <p>Choose the best answer for each of the following questions.</p>
+<div class="quiz-container">
+    <h1>AETC Basic Navigation Quiz</h1>
+    <p>This quiz covers content from BN104 (Atmospheric Structure and Mechanics), BN105 (Weather Hazards), and BN106 (Thunderstorms).</p>
+    
+    <div id="results"></div>
+
+    <form id="quiz-form">
+        <!-- Question 1 -->
+        <div class="question-block" id="q-block-1">
+            <p class="question-text">1. What is the standard temperature lapse rate in the troposphere?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q1" value="a"> A) 1.5°C per 1,000 feet</label>
+                <label><input type="radio" name="q1" value="b"> B) 2.0°C per 1,000 feet</label>
+                <label><input type="radio" name="q1" value="c"> C) 3.0°C per 1,000 feet</label>
+                <label><input type="radio" name="q1" value="d"> D) 3.5°F per 1,000 feet</label>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-block" id="q-block-2">
+            <p class="question-text">2. An atmospheric condition where temperature increases with an increase in altitude is known as a(n):</p>
+            <div class="options-container">
+                <label><input type="radio" name="q2" value="a"> A) Standard lapse rate</label>
+                <label><input type="radio" name="q2" value="b"> B) Isothermal layer</label>
+                <label><input type="radio" name="q2" value="c"> C) Temperature inversion</label>
+                <label><input type="radio" name="q2" value="d"> D) Tropopause</label>
+            </div>
+        </div>
         
-        <form id="quiz-form">
-            <!-- Questions will be dynamically inserted here or hardcoded -->
-            <div class="question-block" id="q1-block">
-                <p class="question-text">1. The standard temperature lapse rate in the troposphere is:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q1" value="a"> a. 1°C per 1,000 feet</label></li>
-                    <li><label><input type="radio" name="q1" value="b"> b. 2°C per 1,000 feet</label></li>
-                    <li><label><input type="radio" name="q1" value="c"> c. 3.5°C per 1,000 feet</label></li>
-                    <li><label><input type="radio" name="q1" value="d"> d. 5°C per 1,000 feet</label></li>
-                </ul>
+        <!-- Question 3 -->
+        <div class="question-block" id="q-block-3">
+            <p class="question-text">3. Which atmospheric layer is characterized by a general increase in temperature with an increase in altitude?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q3" value="a"> A) Troposphere</label>
+                <label><input type="radio" name="q3" value="b"> B) Tropopause</label>
+                <label><input type="radio" name="q3" value="c"> C) Stratosphere</label>
+                <label><input type="radio" name="q3" value="d"> D) Mesosphere</label>
             </div>
+        </div>
 
-            <div class="question-block" id="q2-block">
-                <p class="question-text">2. An atmospheric condition where temperature increases with an increase in altitude is known as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q2" value="a"> a. An isothermal layer</label></li>
-                    <li><label><input type="radio" name="q2" value="b"> b. A standard lapse rate</label></li>
-                    <li><label><input type="radio" name="q2" value="c"> c. A temperature inversion</label></li>
-                    <li><label><input type="radio" name="q2" value="d"> d. The tropopause</label></li>
-                </ul>
+        <!-- Question 4 -->
+        <div class="question-block" id="q-block-4">
+            <p class="question-text">4. Lines drawn on a weather chart that connect areas of equal pressure are called:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q4" value="a"> A) Isotherms</label>
+                <label><input type="radio" name="q4" value="b"> B) Isobars</label>
+                <label><input type="radio" name="q4" value="c"> C) Isogons</label>
+                <label><input type="radio" name="q4" value="d"> D) Isotachs</label>
             </div>
+        </div>
 
-            <div class="question-block" id="q3-block">
-                <p class="question-text">3. The majority of the Earth's weather phenomena occurs in which atmospheric layer?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q3" value="a"> a. Stratosphere</label></li>
-                    <li><label><input type="radio" name="q3" value="b"> b. Tropopause</label></li>
-                    <li><label><input type="radio" name="q3" value="c"> c. Troposphere</label></li>
-                    <li><label><input type="radio" name="q3" value="d"> d. Mesosphere</label></li>
-                </ul>
+        <!-- Question 5 -->
+        <div class="question-block" id="q-block-5">
+            <p class="question-text">5. Flying from a high-pressure area to a low-pressure area without adjusting the altimeter will cause the indicated altitude to be:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q5" value="a"> A) Higher than the true altitude</label>
+                <label><input type="radio" name="q5" value="b"> B) Lower than the true altitude</label>
+                <label><input type="radio" name="q5" value="c"> C) The same as the true altitude</label>
+                <label><input type="radio" name="q5" value="d"> D) Equal to pressure altitude</label>
             </div>
+        </div>
 
-            <div class="question-block" id="q4-block">
-                <p class="question-text">4. Lines drawn on a weather chart that connect areas of equal barometric pressure are called:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q4" value="a"> a. Isotherms</label></li>
-                    <li><label><input type="radio" name="q4" value="b"> b. Isobars</label></li>
-                    <li><label><input type="radio" name="q4" value="c"> c. Isogons</label></li>
-                    <li><label><input type="radio" name="q4" value="d"> d. Isotachs</label></li>
-                </ul>
+        <!-- Question 6 -->
+        <div class="question-block" id="q-block-6">
+            <p class="question-text">6. What are the International Standard Atmosphere (ISA) conditions at sea level?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q6" value="a"> A) 15°C and 29.92 in-Hg</label>
+                <label><input type="radio" name="q6" value="b"> B) 15°F and 29.92 in-Hg</label>
+                <label><input type="radio" name="q6" value="c"> C) 59°C and 1013.2 in-Hg</label>
+                <label><input type="radio" name="q6" value="d"> D) 0°C and 1013.2 mb</label>
             </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question-block" id="q-block-7">
+            <p class="question-text">7. Altitude read directly from the altimeter is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q7" value="a"> A) True Altitude</label>
+                <label><input type="radio" name="q7" value="b"> B) Pressure Altitude</label>
+                <label><input type="radio" name="q7" value="c"> C) Indicated Altitude</label>
+                <label><input type="radio" name="q7" value="d"> D) Density Altitude</label>
+            </div>
+        </div>
+        
+        <!-- Question 8 -->
+        <div class="question-block" id="q-block-8">
+            <p class="question-text">8. What is the height of an aircraft above the ground directly beneath it called?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q8" value="a"> A) Absolute Altitude (AGL)</label>
+                <label><input type="radio" name="q8" value="b"> B) True Altitude (MSL)</label>
+                <label><input type="radio" name="q8" value="c"> C) Indicated Altitude</label>
+                <label><input type="radio" name="q8" value="d"> D) Density Altitude</label>
+            </div>
+        </div>
+        
+        <!-- Question 9 -->
+        <div class="question-block" id="q-block-9">
+            <p class="question-text">9. Pressure altitude is the height above what reference plane?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q9" value="a"> A) Mean sea level</label>
+                <label><input type="radio" name="q9" value="b"> B) The local terrain</label>
+                <label><input type="radio" name="q9" value="c"> C) The standard datum plane (29.92 in-Hg)</label>
+                <label><input type="radio" name="q9" value="d"> D) The Kollsman window setting</label>
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question-block" id="q-block-10">
+            <p class="question-text">10. On a hot, humid day, density altitude will be:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q10" value="a"> A) Lower than pressure altitude</label>
+                <label><input type="radio" name="q10" value="b"> B) Higher than pressure altitude</label>
+                <label><input type="radio" name="q10" value="c"> C) Equal to pressure altitude</label>
+                <label><input type="radio" name="q10" value="d"> D) Equal to true altitude</label>
+            </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question-block" id="q-block-11">
+            <p class="question-text">11. If flying in air that is colder than standard, your true altitude will be:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q11" value="a"> A) Higher than your indicated altitude</label>
+                <label><input type="radio" name="q11" value="b"> B) Lower than your indicated altitude</label>
+                <label><input type="radio" name="q11" value="c"> C) The same as your indicated altitude</label>
+                <label><input type="radio" name="q11" value="d"> D) Impossible to determine</label>
+            </div>
+        </div>
+        
+        <!-- Question 12 -->
+        <div class="question-block" id="q-block-12">
+            <p class="question-text">12. Wind is reported in terms of:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q12" value="a"> A) The direction it is blowing towards</label>
+                <label><input type="radio" name="q12" value="b"> B) The direction it is blowing from</label>
+                <label><input type="radio" name="q12" value="c"> C) Magnetic north reference only</label>
+                <label><input type="radio" name="q12" value="d"> D) The average of from and toward</label>
+            </div>
+        </div>
+        
+        <!-- Question 13 -->
+        <div class="question-block" id="q-block-13">
+            <p class="question-text">13. Widely spaced isobars on a weather chart indicate:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q13" value="a"> A) A steep pressure gradient and high wind speeds</label>
+                <label><input type="radio" name="q13" value="b"> B) A shallow pressure gradient and high wind speeds</label>
+                <label><input type="radio" name="q13" value="c"> C) A steep pressure gradient and low wind speeds</label>
+                <label><input type="radio" name="q13" value="d"> D) A shallow pressure gradient and low wind speeds</label>
+            </div>
+        </div>
+        
+        <!-- Question 14 -->
+        <div class="question-block" id="q-block-14">
+            <p class="question-text">14. Above 2,000' AGL, winds flow parallel to the isobars. This is due to a balance between the pressure gradient force and the:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q14" value="a"> A) Centrifugal force</label>
+                <label><input type="radio" name="q14" value="b"> B) Gravitational force</label>
+                <label><input type="radio" name="q14" value="c"> C) Coriolis force</label>
+                <label><input type="radio" name="q14" value="d"> D) Frictional force</label>
+            </div>
+        </div>
+        
+        <!-- Question 15 -->
+        <div class="question-block" id="q-block-15">
+            <p class="question-text">15. A wind that blows from the sea toward the land during the day is called a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q15" value="a"> A) Land breeze</label>
+                <label><input type="radio" name="q15" value="b"> B) Valley breeze</label>
+                <label><input type="radio" name="q15" value="c"> C) Sea breeze</label>
+                <label><input type="radio" name="q15" value="d"> D) Mountain breeze</label>
+            </div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question-block" id="q-block-16">
+            <p class="question-text">16. The temperature to which air must be cooled to become saturated is known as the:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q16" value="a"> A) Saturation point</label>
+                <label><input type="radio" name="q16" value="b"> B) Dew point</label>
+                <label><input type="radio" name="q16" value="c"> C) Relative humidity</label>
+                <label><input type="radio" name="q16" value="d"> D) Condensation temperature</label>
+            </div>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question-block" id="q-block-17">
+            <p class="question-text">17. For aviation purposes, a ceiling is defined as the lowest layer of clouds reported as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q17" value="a"> A) Scattered or broken</label>
+                <label><input type="radio" name="q17" value="b"> B) Few or scattered</label>
+                <label><input type="radio" name="q17" value="c"> C) Broken or overcast</label>
+                <label><input type="radio" name="q17" value="d"> D) Few, scattered, or broken</label>
+            </div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question-block" id="q-block-18">
+            <p class="question-text">18. Which type of lifting mechanism involves air being forced upward over a mountain range?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q18" value="a"> A) Convergence</label>
+                <label><input type="radio" name="q18" value="b"> B) Frontal</label>
+                <label><input type="radio" name="q18" value="c"> C) Thermal</label>
+                <label><input type="radio" name="q18" value="d"> D) Orographic</label>
+            </div>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question-block" id="q-block-19">
+            <p class="question-text">19. Which of the following is a characteristic of stable air?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q19" value="a"> A) Cumuliform clouds</label>
+                <label><input type="radio" name="q19" value="b"> B) Good visibility</label>
+                <label><input type="radio" name="q19" value="c"> C) Steady precipitation</label>
+                <label><input type="radio" name="q19" value="d"> D) Rough, turbulent air</label>
+            </div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question-block" id="q-block-20">
+            <p class="question-text">20. Which of the following is a characteristic of unstable air?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q20" value="a"> A) Stratiform clouds</label>
+                <label><input type="radio" name="q20" value="b"> B) Poor visibility</label>
+                <label><input type="radio" name="q20" value="c"> C) Smooth air</label>
+                <label><input type="radio" name="q20" value="d"> D) Showery precipitation</label>
+            </div>
+        </div>
+        
+        <!-- Question 21 -->
+        <div class="question-block" id="q-block-21">
+            <p class="question-text">21. A fast-moving front where cold, dense air wedges under warmer air, often producing violent, unstable conditions and thunderstorms, is a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q21" value="a"> A) Warm front</label>
+                <label><input type="radio" name="q21" value="b"> B) Cold front</label>
+                <label><input type="radio" name="q21" value="c"> C) Stationary front</label>
+                <label><input type="radio" name="q21" value="d"> D) Occluded front</label>
+            </div>
+        </div>
+
+        <!-- Question 22 -->
+        <div class="question-block"
+         id="q-block-22">
+            <p class="question-text">22. A line of violent thunderstorms that develops 50 to 300 miles ahead of a cold front is known as a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q22" value="a"> A) Squall line</label>
+                <label><input type="radio" name="q22" value="b"> B) Trough</label>
+                <label><input type="radio" name="q22" value="c"> C) Ridge</label>
+                <label><input type="radio" name="q22" value="d"> D) Dry line</label>
+            </div>
+        </div>
+
+        <!-- Question 23 -->
+        <div class="question-block" id="q-block-23">
+            <p class="question-text">23. Widespread stratiform clouds, drizzle, and poor visibility are characteristic of which type of front?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q23" value="a"> A) Cold front</label>
+                <label><input type="radio" name="q23" value="b"> B) Squall line</label>
+                <label><input type="radio" name="q23" value="c"> C) Occluded front</label>
+                <label><input type="radio" name="q23" value="d"> D) Warm front</label>
+            </div>
+        </div>
+        
+        <!-- Question 24 -->
+        <div class="question-block" id="q-block-24">
+            <p class="question-text">24. What type of front forms when a faster-moving cold front overtakes a slower-moving warm front?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q24" value="a"> A) Stationary front</label>
+                <label><input type="radio" name="q24" value="b"> B) Reinforced cold front</label>
+                <label><input type="radio" name="q24" value="c"> C) Occluded front</label>
+                <label><input type="radio" name="q24" value="d"> D) Inactive front</label>
+            </div>
+        </div>
+        
+        <!-- Question 25 -->
+        <div class="question-block" id="q-block-25">
+            <p class="question-text">25. Most of the Earth's weather occurs in which atmospheric layer?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q25" value="a"> A) Stratosphere</label>
+                <label><input type="radio" name="q25" value="b"> B) Tropopause</label>
+                <label><input type="radio" name="q25" value="c"> C) Troposphere</label>
+                <label><input type="radio" name="q25" value="d"> D) Mesosphere</label>
+            </div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="question-block" id="q-block-26">
+            <p class="question-text">26. An extension of a low-pressure area, generally associated with poor weather, is called a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q26" value="a"> A) Ridge</label>
+                <label><input type="radio" name="q26" value="b"> B) Trough</label>
+                <label><input type="radio" name="q26" value="c"> C) Col</label>
+                <label><input type="radio" name="q26" value="d"> D) Depression</label>
+            </div>
+        </div>
+
+        <!-- Question 27 -->
+        <div class="question-block" id="q-block-27">
+            <p class="question-text">27. An altimeter setting of 29.92 in-Hg is required when flying at or above:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q27" value="a"> A) 10,000 feet MSL</label>
+                <label><input type="radio" name="q27" value="b"> B) 14,000 feet MSL</label>
+                <label><input type="radio" name="q27" value="c"> C) 18,000 feet MSL</label>
+                <label><input type="radio" name="q27" value="d"> D) 24,000 feet MSL</label>
+            </div>
+        </div>
+        
+        <!-- Question 28 -->
+        <div class="question-block" id="q-block-28">
+            <p class="question-text">28. The standard pressure lapse rate is approximately:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q28" value="a"> A) 1 in-Hg per 1,000 feet</label>
+                <label><input type="radio" name="q28" value="b"> B) 1 in-Hg per 2,000 feet</label>
+                <label><input type="radio" name="q28" value="c"> C) 2 in-Hg per 1,000 feet</label>
+                <label><input type="radio" name="q28" value="d"> D) 0.5 in-Hg per 1,000 feet</label>
+            </div>
+        </div>
+
+        <!-- Question 29 -->
+        <div class="question-block" id="q-block-29">
+            <p class="question-text">29. The average forward horizontal distance at which a pilot can see and identify prominent objects is called:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q29" value="a"> A) Prevailing visibility</label>
+                <label><input type="radio" name="q29" value="b"> B) Runway Visual Range (RVR)</label>
+                <label><input type="radio" name="q29" value="c"> C) Slant range visibility</label>
+                <label><input type="radio" name="q29" value="d"> D) Flight visibility</label>
+            </div>
+        </div>
+
+        <!-- Question 30 -->
+        <div class="question-block" id="q-block-30">
+            <p class="question-text">30. What three conditions are required for fog to form?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q30" value="a"> A) High water content, strong winds, and condensation nuclei</label>
+                <label><input type="radio" name="q30" value="b"> B) Low water content, light winds, and clear skies</label>
+                <label><input type="radio" name="q30" value="c"> C) High water content, light winds, and condensation nuclei</label>
+                <label><input type="radio" name="q30" value="d"> D) Low dew point spread, no wind, and high altitude</label>
+            </div>
+        </div>
+        
+        <!-- Question 31 -->
+        <div class="question-block" id="q-block-31">
+            <p class="question-text">31. Severe windshear is defined as rapid airspeed changes greater than ___ knots or vertical speed changes greater than ___ feet per minute.</p>
+            <div class="options-container">
+                <label><input type="radio" name="q31" value="a"> A) 10; 300</label>
+                <label><input type="radio" name="q31" value="b"> B) 15; 500</label>
+                <label><input type="radio" name="q31" value="c"> C) 20; 750</label>
+                <label><input type="radio" name="q31" value="d"> D) 25; 1000</label>
+            </div>
+        </div>
+        
+        <!-- Question 32 -->
+        <div class="question-block" id="q-block-32">
+            <p class="question-text">32. Any windshear that is encountered in close proximity to the ground (within 2,000 feet) is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q32" value="a"> A) Microburst</label>
+                <label><input type="radio" name="q32" value="b"> B) Severe windshear</label>
+                <label><input type="radio" name="q32" value="c"> C) Low Level Windshear (LLWS)</label>
+                <label><input type="radio" name="q32" value="d"> D) Performance decreasing shear</label>
+            </div>
+        </div>
+        
+        <!-- Question 33 -->
+        <div class="question-block" id="q-block-33">
+            <p class="question-text">33. Which category of turbulence causes large, abrupt changes in altitude and/or attitude, making aircraft control very difficult?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q33" value="a"> A) Light</label>
+                <label><input type="radio" name="q33" value="b"> B) Moderate</label>
+                <label><input type="radio" name="q33" value="c"> C) Severe</label>
+                <label><input type="radio" name="q33" value="d"> D) Extreme</label>
+            </div>
+        </div>
+
+        <!-- Question 34 -->
+        <div class="question-block" id="q-block-34">
+            <p class="question-text">34. Which category of turbulence causes slight, erratic changes in altitude/attitude, and may be referred to as 'light chop'?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q34" value="a"> A) Light</label>
+                <label><input type="radio" name="q34" value="b"> B) Moderate</label>
+                <label><input type="radio" name="q34" value="c"> C) Severe</label>
+                <label><input type="radio" name="q34" value="d"> D) Extreme</label>
+            </div>
+        </div>
+
+        <!-- Question 35 -->
+        <div class="question-block" id="q-block-35">
+            <p class="question-text">35. Turbulence caused by wind flowing over irregular terrain or obstructions is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q35" value="a"> A) Thermal turbulence</label>
+                <label><input type="radio" name="q35" value="b"> B) Frontal turbulence</label>
+                <label><input type="radio" name="q35" value="c"> C) Mechanical turbulence</label>
+                <label><input type="radio" name="q35" value="d"> D) Shear turbulence</label>
+            </div>
+        </div>
+
+        <!-- Question 36 -->
+        <div class="question-block" id="q-block-36">
+            <p class="question-text">36. Turbulence that occurs in the vicinity of the jet stream above 10,000 feet is often called:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q36" value="a"> A) Frontal turbulence</label>
+                <label><input type="radio" name="q36" value="b"> B) Convective turbulence</label>
+                <label><input type="radio" name="q36" value="c"> C) Clear Air Turbulence (CAT)</label>
+                <label><input type="radio" name="q36" value="d"> D) Wake turbulence</label>
+            </div>
+        </div>
+        
+        <!-- Question 37 -->
+        <div class="question-block" id="q-block-37">
+            <p class="question-text">37. Icing forms when an aircraft flies through visible moisture and super-cooled water droplets. Super-cooled water is liquid water that is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q37" value="a"> A) At exactly 0°C</label>
+                <label><input type="radio" name="q37" value="b"> B) Cooled below the freezing point but has yet to form ice</label>
+                <label><input type="radio" name="q37" value="c"> C) Mixed with ice crystals</label>
+                <label><input type="radio" name="q37" value="d"> D) In a gaseous state below 0°C</label>
+            </div>
+        </div>
+        
+        <!-- Question 38 -->
+        <div class="question-block" id="q-block-38">
+            <p class="question-text">38. Which type of icing is milky white in appearance and most likely to occur in stable conditions between -10°C and -20°C?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q38" value="a"> A) Clear ice</label>
+                <label><input type="radio" name="q38" value="b"> B) Rime ice</label>
+                <label><input type="radio" name="q38" value="c"> C) Mixed ice</label>
+                <label><input type="radio" name="q38" value="d"> D) Frost</label>
+            </div>
+        </div>
+
+        <!-- Question 39 -->
+        <div class="question-block" id="q-block-39">
+            <p class="question-text">39. Which type of icing is a solid layer of ice that forms when large water droplets freeze gradually, and is considered extremely hazardous?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q39" value="a"> A) Clear ice</label>
+                <label><input type="radio" name="q39" value="b"> B) Rime ice</label>
+                <label><input type="radio" name="q39" value="c"> C) Mixed ice</label>
+                <label><input type="radio" name="q39" value="d"> D) Frost</label>
+            </div>
+        </div>
+
+        <!-- Question 40 -->
+        <div class="question-block" id="q-block-40">
+            <p class="question-text">40. What is the recommended temperature range to avoid when flying in visible moisture to prevent icing?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q40" value="a"> A) +5°C to -5°C</label>
+                <label><input type="radio" name="q40" value="b"> B) 0°C to -20°C</label>
+                <label><input type="radio" name="q40" value="c"> C) -10°C to -30°C</label>
+                <label><input type="radio" name="q40" value="d"> D) -20°C to -40°C</label>
+            </div>
+        </div>
+
+        <!-- Question 41 -->
+        <div class="question-block" id="q-block-41">
+            <p class="question-text">41. Icing intensity where the rate of accumulation is such that even short encounters become potentially hazardous and a change of heading or altitude is required is categorized as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q41" value="a"> A) Trace</label>
+                <label><input type="radio" name="q41" value="b"> B) Light</label>
+                <label><input type="radio" name="q41" value="c"> C) Moderate</label>
+                <label><input type="radio" name="q41" value="d"> D) Severe</label>
+            </div>
+        </div>
+
+        <!-- Question 42 -->
+        <div class="question-block" id="q-block-42">
+            <p class="question-text">42. Icing intensity where the rate of accumulation is such that deicing/anti-icing equipment fails to control the hazard and an immediate heading/altitude change is required is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q42" value="a"> A) Trace</label>
+                <label><input type="radio" name="q42" value="b"> B) Light</label>
+                <label><input type="radio" name="q42" value="c"> C) Moderate</label>
+                <label><input type="radio" name="q42" value="d"> D) Severe</label>
+            </div>
+        </div>
+
+        <!-- Question 43 -->
+        <div class="question-block" id="q-block-43">
+            <p class="question-text">43. A combination of clear and rime ice, which is lumpy, hard, and dense, is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q43" value="a"> A) Frost</label>
+                <label><input type="radio" name="q43" value="b"> B) Glaze ice</label>
+                <label><input type="radio" name="q43" value="c"> C) Mixed ice</label>
+                <label><input type="radio" name="q43" value="d"> D) Granular ice</label>
+            </div>
+        </div>
+
+        <!-- Question 44 -->
+        <div class="question-block" id="q-block-44">
+            <p class="question-text">44. What are the three conditions necessary for the formation of a thunderstorm?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q44" value="a"> A) Moist air, stable air, and a lifting action</label>
+                <label><input type="radio" name="q44" value="b"> B) Dry air, unstable air, and high pressure</label>
+                <label><input type="radio" name="q44" value="c"> C) Moist air, unstable air, and a lifting action</label>
+                <label><input type="radio" name="q44" value="d"> D) Moist air, stable air, and a cold front</label>
+            </div>
+        </div>
+
+        <!-- Question 45 -->
+        <div class="question-block" id="q-block-45">
+            <p class="question-text">45. A microburst is a short-lived, powerful downdraft of air that is less than ___ in scale and typically lasts for ___.</p>
+            <div class="options-container">
+                <label><input type="radio" name="q45" value="a"> A) 1 mile; 1-2 minutes</label>
+                <label><input type="radio" name="q45" value="b"> B) 2.5 miles; 5-10 minutes</label>
+                <label><input type="radio" name="q45" value="c"> C) 5 miles; 15-20 minutes</label>
+                <label><input type="radio" name="q45" value="d"> D) 10 miles; up to 30 minutes</label>
+            </div>
+        </div>
+
+        <!-- Question 46 -->
+        <div class="question-block" id="q-block-46">
+            <p class="question-text">46. The downdrafts in a microburst can reach speeds of:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q46" value="a"> A) 500 - 1000 fpm</label>
+                <label><input type="radio" name="q46" value="b"> B) 1000 - 1500 fpm</label>
+                <label><input type="radio" name="q46" value="c"> C) 2000 - 6000 fpm</label>
+                <label><input type="radio" name="q46" value="d"> D) Over 8000 fpm</label>
+            </div>
+        </div>
+        
+        <!-- Question 47 -->
+        <div class="question-block" id="q-block-47">
+            <p class="question-text">47. A pilot entering a microburst will typically first experience:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q47" value="a"> A) A strong downdraft</label>
+                <label><input type="radio" name="q47" value="b"> B) A strong tailwind, decreasing performance</label>
+                <label><input type="radio" name="q47" value="c"> C) A strong headwind, increasing performance</label>
+                <label><input type="radio" name="q47" value="d"> D) A rapid decrease in temperature</label>
+            </div>
+        </div>
+        
+        <!-- Question 48 -->
+        <div class="question-block" id="q-block-48">
+            <p class="question-text">48. The transition zone between the troposphere and the stratosphere, characterized by a near-constant temperature range, is the:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q48" value="a"> A) Mesopause</label>
+                <label><input type="radio" name="q48" value="b"> B) Stratopause</label>
+                <label><input type="radio" name="q48" value="c"> C) Tropopause</label>
+                <label><input type="radio" name="q48" value="d"> D) Ionosphere</label>
+            </div>
+        </div>
+
+        <!-- Question 49 -->
+        <div class="question-block" id="q-block-49">
+            <p class="question-text">49. For every 11°C that the temperature varies from standard, the altimeter error is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q49" value="a"> A) 1%</label>
+                <label><input type="radio" name="q49" value="b"> B) 2%</label>
+                <label><input type="radio" name="q49" value="c"> C) 4%</label>
+                <label><input type="radio" name="q49" value="d"> D) 11%</label>
+            </div>
+        </div>
+        
+        <!-- Question 50 -->
+        <div class="question-block" id="q-block-50">
+            <p class="question-text">50. A downslope wind that occurs at night in mountainous terrain is known as a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q50" value="a"> A) Valley breeze</label>
+                <label><input type="radio" name="q50" value="b"> B) Mountain breeze</label>
+                <label><input type="radio" name="q50" value="c"> C) Sea breeze</label>
+                <label><input type="radio" name="q50" value="d"> D) Chinook wind</label>
+            </div>
+        </div>
+        
+        <!-- Question 51 -->
+        <div class="question-block" id="q-block-51">
+            <p class="question-text">51. Rain that evaporates before reaching the ground is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q51" value="a"> A) Drizzle</label>
+                <label><input type="radio" name="q51" value="b"> B) Sleet</label>
+                <label><input type="radio" name="q51" value="c"> C) Virga</label>
+                <label><input type="radio" name="q51" value="d"> D) Graupel</label>
+            </div>
+        </div>
+
+        <!-- Question 52 -->
+        <div class="question-block" id="q-block-52">
+            <p class="question-text">52. True Altitude is the aircraft's height above:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q52" value="a"> A) The standard datum plane</label>
+                <label><input type="radio" name="q52" value="b"> B) The ground directly below</label>
+                <label><input type="radio" name="q52" value="c"> C) Mean Sea Level (MSL)</label>
+                <label><input type="radio" name="q52" value="d"> D) The pressure altitude</label>
+            </div>
+        </div>
+
+        <!-- Question 53 -->
+        <div class="question-block" id="q-block-53">
+            <p class="question-text">53. Density altitude is primarily used as an indicator of:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q53" value="a"> A) Aircraft height</label>
+                <label><input type="radio" name="q53" value="b"> B) Air pressure</label>
+                <label><input type="radio" name="q53" value="c"> C) Aircraft performance</label>
+                <label><input type="radio" name="q53" value="d"> D) True airspeed</label>
+            </div>
+        </div>
+        
+        <!-- Question 54 -->
+        <div class="question-block" id="q-block-54">
+            <p class="question-text">54. An elongated area of high pressure is referred to as a:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q54" value="a"> A) Trough</label>
+                <label><input type="radio" name="q54" value="b"> B) Front</label>
+                <label><input type="radio" name="q54" value="c"> C) Col</label>
+                <label><input type="radio" name="q54" value="d"> D) Ridge</label>
+            </div>
+        </div>
+        
+        <!-- Question 55 -->
+        <div class="question-block" id="q-block-55">
+            <p class="question-text">55. Which of the four atmospheric lifting mechanisms involves the heating of the Earth's surface?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q55" value="a"> A) Convergence</label>
+                <label><input type="radio" name="q55" value="b"> B) Thermal (Convective)</label>
+                <label><input type="radio" name="q55" value="c"> C) Orographic</label>
+                <label><input type="radio" name="q55" value="d"> D) Frontal</label>
+            </div>
+        </div>
+
+        <!-- Question 56 -->
+        <div class="question-block" id="q-block-56">
+            <p class="question-text">56. Slant range visibility is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q56" value="a"> A) Published in METARs</label>
+                <label><input type="radio" name="q56" value="b"> B) A subjective variable that is not published</label>
+                <label><input type="radio" name="q56" value="c"> C) The same as Runway Visual Range (RVR)</label>
+                <label><input type="radio" name="q56" value="d"> D) Calculated by air traffic control</label>
+            </div>
+        </div>
+
+        <!-- Question 57 -->
+        <div class="question-block" id="q-block-57">
+            <p class="question-text">57. Which hazard to aviation can cause significant loss of engine thrust and sandblast leading edges, but is not displayed on ATC or airborne radar?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q57" value="a"> A) Severe hail</label>
+                <label><input type="radio" name="q57" value="b"> B) Dense fog</label>
+                <label><input type="radio" name="q57" value="c"> C) Volcanic ash</label>
+                <label><input type="radio" name="q57" value="d"> D) Heavy rain</label>
+            </div>
+        </div>
+
+        <!-- Question 58 -->
+        <div class="question-block" id="q-block-58">
+            <p class="question-text">58. Turbulence that causes changes in altitude and/or attitude but the aircraft remains in positive control at all times is categorized as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q58" value="a"> A) Light</label>
+                <label><input type="radio" name="q58" value="b"> B) Moderate</label>
+                <label><input type="radio" name="q58" value="c"> C) Severe</label>
+                <label><input type="radio" name="q58"  value="d"> D) Extreme</label>
+            </div>
+        </div>
+
+        <!-- Question 59 -->
+        <div class="question-block" id="q-block-59">
+            <p class="question-text">59. Turbulence where the aircraft is violently tossed about, making control virtually impossible, is categorized as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q59" value="a"> A) Light</label>
+                <label><input type="radio" name="q59" value="b"> B) Moderate</label>
+                <label><input type="radio" name="q59" value="c"> C) Severe</label>
+                <label><input type="radio" name="q59" value="d"> D) Extreme</label>
+            </div>
+        </div>
+
+        <!-- Question 60 -->
+        <div class="question-block" id="q-block-60">
+            <p class="question-text">60. Turbulence caused by alternating currents of warm air rising and cooler air descending is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q60" value="a"> A) Mechanical</label>
+                <label><input type="radio" name="q60" value="b"> B) Shear</label>
+                <label><input type="radio" name="q60" value="c"> C) Frontal</label>
+                <label><input type="radio" name="q60" value="d"> D) Thermal</label>
+            </div>
+        </div>
+
+        <!-- Question 61 -->
+        <div class="question-block" id="q-block-61">
+            <p class="question-text">61. Wingtip vortices are a primary component of what type of turbulence?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q61" value="a"> A) Shear turbulence</label>
+                <label><input type="radio" name="q61" value="b"> B) Wake turbulence</label>
+                <label><input type="radio" name="q61" value="c"> C) Mechanical turbulence</label>
+                <label><input type="radio" name="q61" value="d"> D) Frontal turbulence</label>
+            </div>
+        </div>
+
+        <!-- Question 62 -->
+        <div class="question-block" id="q-block-62">
+            <p class="question-text">62. Equipment that prevents the accumulation of ice on specific aircraft surfaces is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q62" value="a"> A) Deicing equipment</label>
+                <label><input type="radio" name="q62" value="b"> B) Anti-icing equipment</label>
+                <label><input type="radio" name="q62" value="c"> C) Weeping wing system</label>
+                <label><input type="radio" name="q62" value="d"> D) Pneumatic boot system</label>
+            </div>
+        </div>
+
+        <!-- Question 63 -->
+        <div class="question-block" id="q-block-63">
+            <p class="question-text">63. A thin layer of crystalline ice that forms on exposed surfaces on clear, calm nights is called:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q63" value="a"> A) Rime ice</label>
+                <label><input type="radio" name="q63" value="b"> B) Clear ice</label>
+                <label><input type="radio" name="q63" value="c"> C) Mixed ice</label>
+                <label><input type="radio" name="q63" value="d"> D) Frost</label>
+            </div>
+        </div>
+
+        <!-- Question 64 -->
+        <div class="question-block" id="q-block-64">
+            <p class="question-text">64. Clear ice most commonly forms in what temperature range?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q64" value="a"> A) 0°C to -10°C</label>
+                <label><input type="radio" name="q64" value="b"> B) -10°C to -20°C</label>
+                <label><input type="radio" name="q64" value="c"> C) -20°C to -30°C</label>
+                <label><input type="radio" name="q64" value="d"> D) Below -40°C</label>
+            </div>
+        </div>
+
+        <!-- Question 65 -->
+        <div class="question-block" id="q-block-65">
+            <p class="question-text">65. Icing intensity where ice becomes perceptible and accumulation is slightly greater than sublimation is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q65" value="a"> A) Trace</label>
+                <label><input type="radio" name="q65" value="b"> B) Light</label>
+                <label><input type="radio" name="q65" value="c"> C) Moderate</label>
+                <label><input type="radio" name="q65" value="d"> D) Severe</label>
+            </div>
+        </div>
+        
+        <!-- Question 66 -->
+        <div class="question-block" id="q-block-66">
+            <p class="question-text">66. Icing intensity where accumulation may create a problem if flight continues for one hour or more, requiring occasional use of deicing equipment, is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q66" value="a"> A) Trace</label>
+                <label><input type="radio" name="q66" value="b"> B) Light</label>
+                <label><input type="radio" name="q66" value="c"> C) Moderate</label>
+                <label><input type="radio" name="q66" value="d"> D) Severe</label>
+            </div>
+        </div>
+
+        <!-- Question 67 -->
+        <div class="question-block" id="q-block-67">
+            <p class="question-text">67. The primary hazard of induction icing is that it:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q67" value="a"> A) Increases aircraft weight</label>
+                <label><input type="radio" name="q67" value="b"> B) Reduces lift</label>
+                <label><input type="radio" name="q67" value="c"> C) Blocks airflow to the engine</label>
+                <label><input type="radio" name="q67" value="d"> D) Disrupts airflow over the wings</label>
+            </div>
+        </div>
+
+        <!-- Question 68 -->
+        <div class="question-block" id="q-block-68">
+            <p class="question-text">68. The initial reaction to passing through the outflow boundary of a microburst is a sudden _______ followed by a strong downdraft.</p>
+            <div class="options-container">
+                <label><input type="radio" name="q68" value="a"> A) tailwind and loss of lift</label>
+                <label><input type="radio" name="q68" value="b"> B) updraft and increase in lift</label>
+                <label><input type="radio" name="q68" value="c"> C) crosswind and yaw</label>
+                <label><input type="radio" name="q68" value="d"> D) headwind and increase in lift</label>
+            </div>
+        </div>
+
+        <!-- Question 69 -->
+        <div class="question-block" id="q-block-69">
+            <p class="question-text">69. Which type of cloud is associated with thunderstorms and is exceedingly dangerous?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q69" value="a"> A) Nimbostratus</label>
+                <label><input type="radio" name="q69" value="b"> B) Altocumulus</label>
+                <label><input type="radio" name="q69" value="c"> C) Cumulonimbus</label>
+                <label><input type="radio" name="q69" value="d"> D) Towering cumulus</label>
+            </div>
+        </div>
+        
+        <!-- Question 70 -->
+        <div class="question-block" id="q-block-70">
+            <p class="question-text">70. An aircraft's height above the standard datum plane (29.92 in-Hg) is:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q70" value="a"> A) Indicated Altitude</label>
+                <label><input type="radio" name="q70" value="b"> B) True Altitude</label>
+                <label><input type="radio" name="q70" value="c"> C) Density Altitude</label>
+                <label><input type="radio" name="q70" value="d"> D) Pressure Altitude</label>
+            </div>
+        </div>
+        
+        <!-- Question 71 -->
+        <div class="question-block" id="q-block-71">
+            <p class="question-text">71. What happens to aircraft performance with a higher density altitude?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q71" value="a"> A) It improves due to less dense air</label>
+                <label><input type="radio" name="q71" value="b"> B) It degrades, resulting in longer takeoff rolls and reduced climb rates</label>
+                <label><input type="radio" name="q71" value="c"> C) It remains unchanged</label>
+                <label><input type="radio" name="q71" value="d"> D) It only affects engine performance, not lift</label>
+            </div>
+        </div>
+
+        <!-- Question 72 -->
+        <div class="question-block" id="q-block-72">
+            <p class="question-text">72. Which type of front involves two air masses pushing against each other with neither being strong enough to move the other?</p>
+            <div class="options-container">
+                <label><input type="radio" name="q72" value="a"> A) Cold Front</label>
+                <label><input type="radio" name="q72" value="b"> B) Occluded Front</label>
+                <label><input type="radio" name="q72" value="c"> C) Warm Front</label>
+                <label><input type="radio" name="q72" value="d"> D) Stationary Front</label>
+            </div>
+        </div>
+
+        <!-- Question 73 -->
+        <div class="question-block" id="q-block-73">
+            <p class="question-text">73. A condition where a thin film of water completely separates tires from the runway surface is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q73" value="a"> A) Aquaplaning</label>
+                <label><input type="radio" name="q73" value="b"> B) Hydroplaning</label>
+                <label><input type="radio" name="q73" value="c"> C) Skidding</label>
+                <label><input type="radio" name="q73" value="d"> D) Water-skiing</label>
+            </div>
+        </div>
+        
+        <!-- Question 74 -->
+        <div class="question-block" id="q-block-74">
+            <p class="question-text">74. In the Northern Hemisphere, surface winds flow ________ around a low-pressure system.</p>
+            <div class="options-container">
+                <label><input type="radio" name="q74" value="a"> A) Clockwise and inward</label>
+                <label><input type="radio" name="q74" value="b"> B) Clockwise and outward</label>
+                <label><input type="radio" name="q74" value="c"> C) Counter-clockwise and inward</label>
+                <label><input type="radio" name="q74" value="d"> D) Counter-clockwise and outward</label>
+            </div>
+        </div>
+        
+        <!-- Question 75 -->
+        <div class="question-block" id="q-block-75">
+            <p class="question-text">75. The formation of ice on the induction section of an engine is known as:</p>
+            <div class="options-container">
+                <label><input type="radio" name="q75" value="a"> A) Structural icing</label>
+                <label><input type="radio" name="q75" value="b"> B) Compressor icing</label>
+                <label><input type="radio" name="q75" value="c"> C) Carburetor icing</label>
+                <label><input type="radio" name="q75" value="d"> D) Engine icing</label>
+            </div>
+        </div>
+
+        <button type="button" id="submit-btn">Check Answers</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('submit-btn').addEventListener('click', function() {
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'c', q4: 'b', q5: 'a', q6: 'a', q7: 'c', q8: 'a', q9: 'c', q10: 'b',
+            q11: 'b', q12: 'b', q13: 'd', q14: 'c', q15: 'c', q16: 'b', q17: 'c', q18: 'd', q19: 'c', q20: 'd',
+            q21: 'b', q22: 'a', q23: 'd', q24: 'c', q25: 'c', q26: 'b', q27: 'c', q28: 'a', q29: 'd', q30: 'c',
+            q31: 'b', q32: 'c', q33: 'c', q34: 'a', q35: 'c', q36: 'c', q37: 'b', q38: 'b', q39: 'a', q40: 'b',
+            q41: 'c', q42: 'd', q43: 'c', q44: 'c', q45: 'b', q46: 'c', q47: 'c', q48: 'c', q49: 'c', q50: 'b',
+            q51: 'c', q52: 'c', q53: 'c', q54: 'd', q55: 'b', q56: 'b', q57: 'c', q58: 'b', q59: 'd', q60: 'd',
+            q61: 'b', q62: 'b', q63: 'd', q64: 'a', q65: 'a', q66: 'b', q67: 'c', q68: 'd', q69: 'c', q70: 'd',
+            q71: 'b', q72: 'd', q73: 'b', q74: 'c', q75: 'd'
+        };
+
+        let score = 0;
+        const totalQuestions = Object.keys(correctAnswers).length;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            const questionName = 'q' + i;
+            const questionBlock = document.getElementById('q-block-' + i);
+            const selectedOption = document.querySelector('input[name="' + questionName + '"]:checked');
             
-            <div class="question-block" id="q5-block">
-                <p class="question-text">5. What are the international standard atmospheric conditions at sea level?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q5" value="a"> a. 15°C and 29.92 in-Hg</label></li>
-                    <li><label><input type="radio" name="q5" value="b"> b. 20°C and 29.92 in-Hg</label></li>
-                    <li><label><input type="radio" name="q5" value="c"> c. 15°F and 1013.2 in-Hg</label></li>
-                    <li><label><input type="radio" name="q5" value="d"> d. 59°C and 1013.2 mb</label></li>
-                </ul>
-            </div>
+            // Reset styles
+            questionBlock.classList.remove('correct', 'incorrect');
+            const allLabels = questionBlock.querySelectorAll('.options-container label');
+            allLabels.forEach(label => {
+                label.classList.remove('correct-answer', 'user-incorrect-choice');
+            });
 
-            <div class="question-block" id="q6-block">
-                <p class="question-text">6. An elongated area of low pressure, generally associated with poor weather, is known as a:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q6" value="a"> a. Ridge</label></li>
-                    <li><label><input type="radio" name="q6" value="b"> b. Trough</label></li>
-                    <li><label><input type="radio" name="q6" value="c"> c. Col</label></li>
-                    <li><label><input type="radio" name="q6" value="d"> d. Front</label></li>
-                </ul>
-            </div>
 
-            <div class="question-block" id="q7-block">
-                <p class="question-text">7. Altitude read directly from the aircraft's altimeter is known as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q7" value="a"> a. True Altitude</label></li>
-                    <li><label><input type="radio" name="q7" value="b"> b. Absolute Altitude</label></li>
-                    <li><label><input type="radio" name="q7" value="c"> c. Pressure Altitude</label></li>
-                    <li><label><input type="radio" name="q7" value="d"> d. Indicated Altitude</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q8-block">
-                <p class="question-text">8. Federal Aviation Rules require aircraft operating above 18,000 feet MSL to set their altimeters to 29.92 in-Hg. These altitudes are referred to as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q8" value="a"> a. True levels</label></li>
-                    <li><label><input type="radio" name="q8" value="b"> b. Flight levels</label></li>
-                    <li><label><input type="radio" name="q8" value="c"> c. Pressure levels</label></li>
-                    <li><label><input type="radio" name="q8" value="d"> d. Density levels</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q9-block">
-                <p class="question-text">9. If you fly from an area of high pressure to an area of low pressure without resetting your altimeter, your true altitude will be:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q9" value="a"> a. Higher than your indicated altitude</label></li>
-                    <li><label><input type="radio" name="q9" value="b"> b. The same as your indicated altitude</label></li>
-                    <li><label><input type="radio" name="q9" value="c"> c. Lower than your indicated altitude</label></li>
-                    <li><label><input type="radio" name="q9" value="d"> d. Equal to your pressure altitude</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q10-block">
-                <p class="question-text">10. On a colder than standard day, your aircraft's true altitude will be:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q10" value="a"> a. Higher than the altimeter indicates</label></li>
-                    <li><label><input type="radio" name="q10" value="b"> b. Lower than the altimeter indicates</label></li>
-                    <li><label><input type="radio" name="q10" value="c"> c. The same as the altimeter indicates</label></li>
-                    <li><label><input type="radio" name="q10" value="d"> d. Impossible to determine without a GPS</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q11-block">
-                <p class="question-text">11. Density altitude is pressure altitude corrected for:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q11" value="a"> a. Nonstandard wind</label></li>
-                    <li><label><input type="radio" name="q11" value="b"> b. Nonstandard pressure</label></li>
-                    <li><label><input type="radio" name="q11" value="c"> c. Nonstandard humidity</label></li>
-                    <li><label><input type="radio" name="q11" value="d"> d. Nonstandard temperature</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q12-block">
-                <p class="question-text">12. Winds are measured and reported in terms of:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q12" value="a"> a. The direction the wind is blowing towards</label></li>
-                    <li><label><input type="radio" name="q12" value="b"> b. The direction the wind is blowing from</label></li>
-                    <li><label><input type="radio" name="q12" value="c"> c. The average direction between true and magnetic north</label></li>
-                    <li><label><input type="radio" name="q12" value="d"> d. The speed in miles per hour only</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q13-block">
-                <p class="question-text">13. Closely spaced isobars on a weather chart indicate:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q13" value="a"> a. A shallow pressure gradient and low wind speeds</label></li>
-                    <li><label><input type="radio" name="q13" value="b"> b. A steep pressure gradient and high wind speeds</label></li>
-                    <li><label><input type="radio" name="q13" value="c"> c. Stable atmospheric conditions</label></li>
-                    <li><label><input type="radio" name="q13" value="d"> d. An area of calm winds</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q14-block">
-                <p class="question-text">14. A local wind that consists of a daytime onshore flow of air is known as a:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q14" value="a"> a. Land breeze</label></li>
-                    <li><label><input type="radio" name="q14" value="b"> b. Mountain breeze</label></li>
-                    <li><label><input type="radio" name="q14" value="c"> c. Valley breeze</label></li>
-                    <li><label><input type="radio" name="q14" value="d"> d. Sea breeze</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q15-block">
-                <p class="question-text">15. Which of the following is a characteristic of stable air?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q15" value="a"> a. Cumulus clouds</label></li>
-                    <li><label><input type="radio" name="q15" value="b"> b. Good visibility</label></li>
-                    <li><label><input type="radio" name="q15" value="c"> c. Showery precipitation</label></li>
-                    <li><label><input type="radio" name="q15" value="d"> d. Stratus clouds</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q16-block">
-                <p class="question-text">16. Which of the following is a characteristic of unstable air?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q16" value="a"> a. Smooth flying conditions</label></li>
-                    <li><label><input type="radio" name="q16" value="b"> b. Poor visibility</label></li>
-                    <li><label><input type="radio" name="q16" value="c"> c. Steady precipitation</label></li>
-                    <li><label><input type="radio" name="q16" value="d"> d. Gusty winds</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q17-block">
-                <p class="question-text">17. When air is forced to rise over a mountain or other obstacle, it is known as which type of lifting?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q17" value="a"> a. Convergence</label></li>
-                    <li><label><input type="radio" name="q17" value="b"> b. Frontal</label></li>
-                    <li><label><input type="radio" name="q17" value="c"> c. Orographic</label></li>
-                    <li><label><input type="radio" name="q17" value="d"> d. Thermal</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q18-block">
-                <p class="question-text">18. During a frontal passage in the Northern Hemisphere, winds will shift in which direction?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q18" value="a"> a. Counter-clockwise</label></li>
-                    <li><label><input type="radio" name="q18" value="b"> b. Clockwise</label></li>
-                    <li><label><input type="radio" name="q18" value="c"> c. From east to west</label></li>
-                    <li><label><input type="radio" name="q18" value="d"> d. From north to south</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q19-block">
-                <p class="question-text">19. A narrow, violent, rotating column of air that extends from a thunderstorm to the ground is a:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q19" value="a"> a. Squall line</label></li>
-                    <li><label><input type="radio" name="q19" value="b"> b. Microburst</label></li>
-                    <li><label><input type="radio" name="q19" value="c"> c. Tornado</label></li>
-                    <li><label><input type="radio" name="q19" value="d"> d. Roll cloud</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q20-block">
-                <p class="question-text">20. A line of violent thunderstorms that develops 50 to 300 miles ahead of a cold front is called a:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q20" value="a"> a. Warm front</label></li>
-                    <li><label><input type="radio" name="q20" value="b"> b. Stationary front</label></li>
-                    <li><label><input type="radio" name="q20" value="c"> c. Squall line</label></li>
-                    <li><label><input type="radio" name="q20" value="d"> d. Occluded front</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q21-block">
-                <p class="question-text">21. The temperature to which air must be cooled to become saturated is the:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q21" value="a"> a. Saturation point</label></li>
-                    <li><label><input type="radio" name="q21" value="b"> b. Dew point</label></li>
-                    <li><label><input type="radio" name="q21" value="c"> c. Condensation point</label></li>
-                    <li><label><input type="radio" name="q21" value="d"> d. Absolute temperature</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q22-block">
-                <p class="question-text">22. Which type of clouds are known as thunderstorm clouds and are exceedingly dangerous?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q22" value="a"> a. Nimbostratus</label></li>
-                    <li><label><input type="radio" name="q22" value="b"> b. Altocumulus</label></li>
-                    <li><label><input type="radio" name="q22" value="c"> c. Cumulonimbus</label></li>
-                    <li><label><input type="radio" name="q22" value="d"> d. Cirrostratus</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q23-block">
-                <p class="question-text">23. Which type of front forms when a faster-moving cold front overtakes a slower-moving warm front?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q23" value="a"> a. Stationary front</label></li>
-                    <li><label><input type="radio" name="q23" value="b"> b. Inactive front</label></li>
-                    <li><label><input type="radio" name="q23" value="c"> c. Occluded front</label></li>
-                    <li><label><input type="radio" name="q23" value="d"> d. Receding front</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q24-block">
-                <p class="question-text">24. What are the three ingredients necessary for the formation of a thunderstorm?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q24" value="a"> a. High pressure, stable air, and a lifting action</label></li>
-                    <li><label><input type="radio" name="q24" value="b"> b. Moisture, unstable air, and a lifting action</label></li>
-                    <li><label><input type="radio" name="q24" value="c"> c. Low pressure, dry air, and a descending action</label></li>
-                    <li><label><input type="radio" name="q24" value="d"> d. Moisture, stable air, and calm winds</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q25-block">
-                <p class="question-text">25. The jet stream is a narrow band of strong winds typically found near the:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q25" value="a"> a. Earth's surface</label></li>
-                    <li><label><input type="radio" name="q25" value="b"> b. Tropopause</label></li>
-                    <li><label><input type="radio" name="q25" value="c"> c. Stratopause</label></li>
-                    <li><label><input type="radio" name="q25" value="d"> d. Top of the stratosphere</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q26-block">
-                <p class="question-text">26. The average forward horizontal distance from the cockpit at which a pilot can see and identify prominent objects is defined as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q26" value="a"> a. Prevailing Visibility</label></li>
-                    <li><label><input type="radio" name="q26" value="b"> b. Runway Visual Range (RVR)</label></li>
-                    <li><label><input type="radio" name="q26" value="c"> c. Slant Range Visibility</label></li>
-                    <li><label><input type="radio" name="q26" value="d"> d. Flight Visibility</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q27-block">
-                <p class="question-text">27. The greatest distance an observer can see and identify objects through at least half of the horizon is defined as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q27" value="a"> a. Prevailing Visibility</label></li>
-                    <li><label><input type="radio" name="q27" value="b"> b. Runway Visual Range (RVR)</label></li>
-                    <li><label><input type="radio" name="q27" value="c"> c. Flight Visibility</label></li>
-                    <li><label><input type="radio" name="q27" value="d"> d. Vertical Visibility</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q28-block">
-                <p class="question-text">28. The horizontal distance a pilot will see looking down the runway from the approach end is:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q28" value="a"> a. Prevailing Visibility</label></li>
-                    <li><label><input type="radio" name="q28" value="b"> b. Flight Visibility</label></li>
-                    <li><label><input type="radio" name="q28" value="c"> c. Runway Visual Range (RVR)</label></li>
-                    <li><label><input type="radio" name="q28" value="d"> d. Obscuration Visibility</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q29-block">
-                <p class="question-text">29. A pilot flying through volcanic ash can expect:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q29" value="a"> a. Improved engine performance</label></li>
-                    <li><label><input type="radio" name="q29" value="b"> b. To see the ash cloud clearly on airborne weather radar</label></li>
-                    <li><label><input type="radio" name="q29" value="c"> c. Significant loss of engine thrust and possible flameouts</label></li>
-                    <li><label><input type="radio" name="q29" value="d"> d. Only minor airframe abrasion with no effect on engines</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q30-block">
-                <p class="question-text">30. Severe windshear is defined as airspeed changes greater than ____ knots or vertical speed changes greater than ____ feet per minute.</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q30" value="a"> a. 10; 250</label></li>
-                    <li><label><input type="radio" name="q30" value="b"> b. 15; 500</label></li>
-                    <li><label><input type="radio" name="q30" value="c"> c. 20; 750</label></li>
-                    <li><label><input type="radio" name="q30" value="d"> d. 25; 1000</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q31-block">
-                <p class="question-text">31. A short-lived but powerful downdraft of air associated with a thunderstorm, posing a significant threat during takeoff and landing, is a:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q31" value="a"> a. Macroburst</label></li>
-                    <li><label><input type="radio" name="q31" value="b"> b. Microburst</label></li>
-                    <li><label><input type="radio" name="q31" value="c"> c. Landspout</label></li>
-                    <li><label><input type="radio" name="q31" value="d"> d. Gust front</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q32-block">
-                <p class="question-text">32. Turbulence that momentarily causes slight, erratic changes in altitude and/or attitude is categorized as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q32" value="a"> a. Light</label></li>
-                    <li><label><input type="radio" name="q32" value="b"> b. Moderate</label></li>
-                    <li><label><input type="radio" name="q32" value="c"> c. Severe</label></li>
-                    <li><label><input type="radio" name="q32" value="d"> d. Extreme</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q33-block">
-                <p class="question-text">33. Turbulence that causes large, abrupt changes in altitude and/or attitude, making aircraft control very difficult, is categorized as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q33" value="a"> a. Light</label></li>
-                    <li><label><input type="radio" name="q33" value="b"> b. Moderate</label></li>
-                    <li><label><input type="radio" name="q33" value="c"> c. Severe</label></li>
-                    <li><label><input type="radio" name="q33" value="d"> d. Extreme</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q34-block">
-                <p class="question-text">34. Turbulence caused by wind flowing over irregular terrain or obstructions is known as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q34" value="a"> a. Thermal turbulence</label></li>
-                    <li><label><input type="radio" name="q34" value="b"> b. Frontal turbulence</label></li>
-                    <li><label><input type="radio" name="q34" value="c"> c. Mechanical turbulence</label></li>
-                    <li><label><input type="radio" name="q34" value="d"> d. Shear turbulence</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q35-block">
-                <p class="question-text">35. The strength of wingtip vortices is determined primarily by the generating aircraft's:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q35" value="a"> a. Color and size</label></li>
-                    <li><label><input type="radio" name="q35" value="b"> b. Altitude and engine type</label></li>
-                    <li><label><input type="radio" name="q35" value="c"> c. Age and maintenance status</label></li>
-                    <li><label><input type="radio" name="q35" value="d"> d. Weight and airspeed</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q36-block">
-                <p class="question-text">36. Structural icing forms on an aircraft when it flies through:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q36" value="a"> a. High humidity at temperatures above 10°C</label></li>
-                    <li><label><input type="radio" name="q36" value="b"> b. Volcanic ash</label></li>
-                    <li><label><input type="radio" name="q36" value="c"> c. Visible moisture with temperatures at or below freezing</label></li>
-                    <li><label><input type="radio" name="q36" value="d"> d. Dry snow</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q37-block">
-                <p class="question-text">37. What type of icing is milky white in appearance and most likely to occur in stable conditions at temperatures from –10°C to –20°C?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q37" value="a"> a. Clear ice</label></li>
-                    <li><label><input type="radio" name="q37" value="b"> b. Rime ice</label></li>
-                    <li><label><input type="radio" name="q37" value="c"> c. Mixed ice</label></li>
-                    <li><label><input type="radio" name="q37" value="d"> d. Frost</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q38-block">
-                <p class="question-text">38. What type of icing forms from large, super-cooled water droplets in unstable air and is considered extremely hazardous because it can build up fast and freeze flight controls?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q38" value="a"> a. Clear ice</label></li>
-                    <li><label><input type="radio" name="q38" value="b"> b. Rime ice</label></li>
-                    <li><label><input type="radio" name="q38" value="c"> c. Mixed ice</label></li>
-                    <li><label><input type="radio" name="q38" value="d"> d. Frost</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q39-block">
-                <p class="question-text">39. Icing intensity is considered ________ when the rate of accumulation is such that deicing/anti-icing equipment fails to reduce or control the hazard.</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q39" value="a"> a. Trace</label></li>
-                    <li><label><input type="radio" name="q39" value="b"> b. Light</label></li>
-                    <li><label><input type="radio" name="q39" value="c"> c. Moderate</label></li>
-                    <li><label><input type="radio" name="q39" value="d"> d. Severe</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q40-block">
-                <p class="question-text">40. Icing intensity is considered ________ when the rate of accumulation may create a problem if flight continues in the environment for one hour or more.</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q40" value="a"> a. Trace</label></li>
-                    <li><label><input type="radio" name="q40" value="b"> b. Light</label></li>
-                    <li><label><input type="radio" name="q40" value="c"> c. Moderate</label></li>
-                    <li><label><input type="radio" name="q40" value="d"> d. Severe</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q41-block">
-                <p class="question-text">41. Which of the following is a recommended precaution to avoid icing?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q41" value="a"> a. Fly parallel to a front when icing is encountered to exit it faster</label></li>
-                    <li><label><input type="radio" name="q41" value="b"> b. Avoid visible moisture at temperatures from 0°C to –20°C</label></li>
-                    <li><label><input type="radio" name="q41" value="c"> c. Climb into clouds over mountain ridges, as the air is warmer</label></li>
-                    <li><label><input type="radio" name="q41" value="d"> d. Ignore frost on the wings, as it will blow off during takeoff</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q42-block">
-                <p class="question-text">42. For fog to form, which of the following conditions must be satisfied?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q42" value="a"> a. Condensation nuclei, low water content, and strong surface winds</label></li>
-                    <li><label><input type="radio" name="q42" value="b"> b. No condensation nuclei, high water content, and calm winds</label></li>
-                    <li><label><input type="radio" name="q42" value="c"> c. Condensation nuclei, high water content (low dew point spread), and light surface winds</label></li>
-                    <li><label><input type="radio" name="q42" value="d"> d. A temperature inversion, low water content, and strong surface winds</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q43-block">
-                <p class="question-text">43. Which type of equipment is designed to remove ice that has already accumulated on the aircraft?</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q43" value="a"> a. Anti-icing equipment</label></li>
-                    <li><label><input type="radio" name="q43" value="b"> b. Deicing equipment</label></li>
-                    <li><label><input type="radio" name="q43" value="c"> c. Pro-icing equipment</label></li>
-                    <li><label><input type="radio" name="q43" value="d"> d. Hydro-icing equipment</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q44-block">
-                <p class="question-text">44. A thin layer of crystalline ice that forms on exposed surfaces on clear, calm nights is known as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q44" value="a"> a. Rime ice</label></li>
-                    <li><label><input type="radio" name="q44" value="b"> b. Glaze ice</label></li>
-                    <li><label><input type="radio" name="q44" value="c"> c. Sleet</label></li>
-                    <li><label><input type="radio" name="q44" value="d"> d. Frost</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q45-block">
-                <p class="question-text">45. The most frequent type of icing encountered is usually a combination of clear and rime ice, known as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q45" value="a"> a. Combination ice</label></li>
-                    <li><label><input type="radio" name="q45" value="b"> b. Compound ice</label></li>
-                    <li><label><input type="radio" name="q45" value="c"> c. Mixed ice</label></li>
-                    <li><label><input type="radio" name="q45" value="d"> d. Hybrid ice</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q46-block">
-                <p class="question-text">46. Turbulence that causes changes in altitude and/or attitude, but the aircraft remains in positive control at all times, is categorized as:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q46" value="a"> a. Light</label></li>
-                    <li><label><input type="radio" name="q46" value="b"> b. Moderate</label></li>
-                    <li><label><input type="radio" name="q46" value="c"> c. Severe</label></li>
-                    <li><label><input type="radio" name="q46" value="d"> d. Extreme</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q47-block">
-                <p class="question-text">47. When encountering a microburst on final approach, a pilot would likely first experience:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q47" value="a"> a. A strong tailwind and a decrease in airspeed</label></li>
-                    <li><label><input type="radio" name="q47" value="b"> b. A strong downdraft followed by a strong tailwind</label></li>
-                    <li><label><input type="radio" name="q47" value="c"> c. An increasing headwind and a performance increase</label></li>
-                    <li><label><input type="radio" name="q47" value="d"> d. A sudden loss of all engine power</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q48-block">
-                <p class="question-text">48. Haze is primarily found in the lower atmosphere under ________ conditions and can significantly reduce slant range visibility.</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q48" value="a"> a. Unstable</label></li>
-                    <li><label><input type="radio" name="q48" value="b"> b. Stable</label></li>
-                    <li><label><input type="radio" name="q48" value="c"> c. Windy</label></li>
-                    <li><label><input type="radio" name="q48" value="d"> d. Turbulent</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q49-block">
-                <p class="question-text">49. Rain or drizzle streaming across a windscreen can be especially hazardous at night due to:</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q49" value="a"> a. The freezing of the droplets</label></li>
-                    <li><label><input type="radio" name="q49" value="b"> b. The reflection from aircraft strobes and runway lights</label></li>
-                    <li><label><input type="radio" name="q49" value="c"> c. The corrosive effect on the windscreen</label></li>
-                    <li><label><input type="radio" name="q49" value="d"> d. The increase in aircraft weight</label></li>
-                </ul>
-            </div>
-
-            <div class="question-block" id="q50-block">
-                <p class="question-text">50. The type of icing found in a warm front is typically _______ and accumulates _______.</p>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q50" value="a"> a. Clear; rapidly</label></li>
-                    <li><label><input type="radio" name="q50" value="b"> b. Rime or mixed; slowly</label></li>
-                    <li><label><input type="radio" name="q50" value="c"> c. Frost; slowly</label></li>
-                    <li><label><input type="radio" name="q50" value="d"> d. Clear; slowly</label></li>
-                </ul>
-            </div>
-
-            <button type="button" id="submit-btn">Submit Quiz</button>
-
-            <div id="results"></div>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('submit-btn').addEventListener('click', function() {
-            const answers = {
-                q1: 'b', q2: 'c', q3: 'c', q4: 'b', q5: 'a',
-                q6: 'b', q7: 'd', q8: 'b', q9: 'c', q10: 'b',
-                q11: 'd', q12: 'b', q13: 'b', q14: 'd', q15: 'd',
-                q16: 'd', q17: 'c', q18: 'b', q19: 'c', q20: 'c',
-                q21: 'b', q22: 'c', q23: 'c', q24: 'b', q25: 'b',
-                q26: 'd', q27: 'a', q28: 'c', q29: 'c', q30: 'b',
-                q31: 'b', q32: 'a', q33: 'c', q34: 'c', q35: 'd',
-                q36: 'c', q37: 'b', q38: 'a', q39: 'd', q40: 'b',
-                q41: 'b', q42: 'c', q43: 'b', q44: 'd', q45: 'c',
-                q46: 'b', q47: 'c', q48: 'b', q49: 'b', q50: 'b'
-            };
-
-            const form = document.getElementById('quiz-form');
-            const totalQuestions = Object.keys(answers).length;
-            let score = 0;
-
-            // Remove any existing correct answer text
-            document.querySelectorAll('.correct-answer-text').forEach(el => el.remove());
-
-            for (let i = 1; i <= totalQuestions; i++) {
-                const questionName = 'q' + i;
-                const questionBlock = document.getElementById(questionName + '-block');
-                const selected = form.elements[questionName];
-                
-                // Reset styles
-                questionBlock.classList.remove('correct', 'incorrect', 'unanswered');
-
-                const userAnswer = selected.value;
-                const correctAnswer = answers[questionName];
-
-                if (userAnswer) {
-                    if (userAnswer === correctAnswer) {
-                        score++;
-                        questionBlock.classList.add('correct');
-                    } else {
-                        questionBlock.classList.add('incorrect');
-                        // Show the correct answer
-                        const correctAnswerText = document.createElement('p');
-                        correctAnswerText.className = 'correct-answer-text';
-                        const correctLabel = document.querySelector(`input[name="${questionName}"][value="${correctAnswer}"]`).parentElement.innerText;
-                        correctAnswerText.innerText = `Correct answer: ${correctLabel}`;
-                        questionBlock.appendChild(correctAnswerText);
-                    }
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswers[questionName]) {
+                    score++;
+                    questionBlock.classList.add('correct');
                 } else {
-                    questionBlock.classList.add('unanswered');
-                    // Show correct answer for unanswered questions as well
-                    const correctAnswerText = document.createElement('p');
-                    correctAnswerText.className = 'correct-answer-text';
-                    const correctLabel = document.querySelector(`input[name="${questionName}"][value="${correctAnswer}"]`).parentElement.innerText;
-                    correctAnswerText.innerText = `Correct answer: ${correctLabel}`;
-                    questionBlock.appendChild(correctAnswerText);
+                    questionBlock.classList.add('incorrect');
+                    // Mark user's wrong choice
+                    selectedOption.parentElement.classList.add('user-incorrect-choice');
+                    // Mark the correct answer
+                    const correctOptionInput = document.querySelector('input[name="' + questionName + '"][value="' + correctAnswers[questionName] + '"]');
+                    if (correctOptionInput) {
+                        correctOptionInput.parentElement.classList.add('correct-answer');
+                    }
+                }
+            } else {
+                // If unanswered, mark as incorrect and show the correct answer
+                questionBlock.classList.add('incorrect');
+                const correctOptionInput = document.querySelector('input[name="' + questionName + '"][value="' + correctAnswers[questionName] + '"]');
+                if (correctOptionInput) {
+                    correctOptionInput.parentElement.classList.add('correct-answer');
                 }
             }
+        }
 
-            const resultsContainer = document.getElementById('results');
-            const percentage = ((score / totalQuestions) * 100).toFixed(2);
-            resultsContainer.innerHTML = `You scored ${score} out of ${totalQuestions} (${percentage}%)`;
-            
-            // Set result container color based on score
-            if (percentage >= 80) {
-                 resultsContainer.style.backgroundColor = '#e8f5e9';
-                 resultsContainer.style.color = '#2e7d32';
-            } else if (percentage >= 60) {
-                 resultsContainer.style.backgroundColor = '#fff3e0';
-                 resultsContainer.style.color = '#e65100';
-            } else {
-                 resultsContainer.style.backgroundColor = '#ffebee';
-                 resultsContainer.style.color = '#c62828';
-            }
-
-            // Scroll to the results
-            resultsContainer.scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
+        const percentage = (score / totalQuestions) * 100;
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)`;
+        
+        if (percentage >= 80) {
+             resultsDiv.style.color = '#155724';
+             resultsDiv.style.backgroundColor = '#d4edda';
+        } else {
+             resultsDiv.style.color = '#721c24';
+             resultsDiv.style.backgroundColor = '#f8d7da';
+        }
+        
+        window.scrollTo(0, 0);
+    });
+</script>
 
 </body>
 </html>
